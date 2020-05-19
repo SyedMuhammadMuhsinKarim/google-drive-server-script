@@ -1,7 +1,7 @@
 {
   "name": "node-http-server",
   "engines": {
-    "node": "10.16.0"
+    "node": "10.20.1"
   },
   "version": "1.0.0",
   "description": "Node.js example server starter project",
@@ -12,10 +12,14 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "compression": "1.7.4",
+    "cookie-parser": "1.4.5",
     "cors": "2.8.5",
     "express": "4.17.1",
+    "helmet": "3.22.0",
     "mongoose": "5.9.10",
-    "uuid": "7.0.3"
+    "uuid": "7.0.3",
+    "dotenv": "8.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "7.9.5",

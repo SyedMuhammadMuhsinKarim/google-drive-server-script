@@ -1,9 +1,11 @@
+import "dotenv/config";
 import cors from "cors";
 import express from "express";
-import connect from "./database";
 import compression from "compression";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+
+import connect from "./database";
 import { routes as mylinks } from "./links";
 import { routes as myreports } from "./reports";
 

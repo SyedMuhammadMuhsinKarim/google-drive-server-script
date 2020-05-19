@@ -1,5 +1,5 @@
 //Import the mongoose module
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const mongoDB = process.env.MONGO;
 
 const connect = () =>

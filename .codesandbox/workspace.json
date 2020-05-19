@@ -8,8 +8,8 @@
         {
           "id": "codesandbox.browser",
           "options": {
-            "port": 40221,
-            "url": "https://k6vq2-40221.sse.codesandbox.io"
+            "port": 35613,
+            "url": "https://2qbmn-35613.sse.codesandbox.io"
           },
           "closeable": true
         }
