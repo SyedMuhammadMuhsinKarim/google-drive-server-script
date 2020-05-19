@@ -1,5 +1,8 @@
 {
   "name": "node-http-server",
+  "engines": {
+    "node": "10.16.0"
+  },
   "version": "1.0.0",
   "description": "Node.js example server starter project",
   "main": "nodemon --exec babel-node src/index.js",
