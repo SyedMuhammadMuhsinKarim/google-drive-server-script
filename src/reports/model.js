@@ -20,8 +20,8 @@ const mySchema = new Schema({
   }
 });
 
-mySchema.virtual("url").get(function() {
-  return "/" + this._id;
-});
+// mySchema.virtual("url").get(function() {
+//   return "/" + this._id;
+// });
 
 export default Model("Report", mySchema);

@@ -18,18 +18,19 @@ const get_report_with_id = async (req, res) => {
 };
 
 const post_report_with_id = (req, res) => {
-  const { link_id } = req.body;
+  const { getId } = req;
+  console.log(getId);
   models
     .create({
-      link_id: link_id
+      link_id: getId
     })
     .then(() => res.send("Link Reported"))
     .catch(err => {
       if (err.code === 11000) {
         // console.log("Already Reported", err.message);
-        res.sendStatus(409, "Already Reported");
+        res.status(409).json({ mesaage: err.message });
       } else {
-        res.send("Something wrong, try again");
+        res.status(404).json({ mesaage: err.message });
       }
     });
 };

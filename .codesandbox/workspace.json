@@ -4,14 +4,6 @@
       "views": [
         {
           "id": "codesandbox.browser"
-        },
-        {
-          "id": "codesandbox.browser",
-          "options": {
-            "port": 35613,
-            "url": "https://2qbmn-35613.sse.codesandbox.io"
-          },
-          "closeable": true
         }
       ]
     },
