@@ -24,13 +24,13 @@ const post_report_with_id = (req, res) => {
     .create({
       link_id: getId
     })
-    .then(() => res.send("Link Reported"))
+    .then(() => res.json({ message: "Link Reported" }))
     .catch(err => {
       if (err.code === 11000) {
         // console.log("Already Reported", err.message);
-        res.status(409).json({ mesaage: err.message });
+        res.status(409).json({ error: err.code, mesaage: err.message });
       } else {
-        res.status(404).json({ mesaage: err.message });
+        res.status(404).json({ error: err.code, mesaage: err.message });
       }
     });
 };
