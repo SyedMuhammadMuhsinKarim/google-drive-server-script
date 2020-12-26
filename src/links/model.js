@@ -13,11 +13,6 @@ const mySchema = new Schema({
   quality: { type: String },
   format: { type: String },
   duration: { type: String }
-  // user_id: {type: Schema.Types.ObjectId, ref: '', required: true}
-});
-
-mySchema.virtual("url").get(function() {
-  return "/" + this._id;
 });
 
 export default Model("Link", mySchema);

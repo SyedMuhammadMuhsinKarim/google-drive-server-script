@@ -1,4 +1,3 @@
-// import mongoose from "mongoose";
 import linkModel from "./../links/model";
 
 const getLinkId = async (req, res, next) => {

@@ -1,10 +1,7 @@
 import models from "./model";
 
 const get_report = async (req, res) => {
-  const Link = await models
-    .find()
-    .limit(10)
-    .sort({ size: -1 });
+  const Link = await models.find().limit(10).sort({ size: -1 });
   return res.send(Link);
 };
 
@@ -19,15 +16,13 @@ const get_report_with_id = async (req, res) => {
 
 const post_report_with_id = (req, res) => {
   const { getId } = req;
-  console.log(getId);
   models
     .create({
       link_id: getId
     })
     .then(() => res.json({ message: "Link Reported" }))
-    .catch(err => {
+    .catch((err) => {
       if (err.code === 11000) {
-        // console.log("Already Reported", err.message);
         res.status(409).json({ error: err.code, mesaage: err.message });
       } else {
         res.status(404).json({ error: err.code, mesaage: err.message });

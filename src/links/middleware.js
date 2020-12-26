@@ -3,12 +3,9 @@ import axios from "axios";
 
 const googleLinkCheck = (req, res, next) => {
   axios(
-    `https://www.googleapis.com/drive/v2/files/${req.idLink}?key=${
-      process.env.DRIVEAPIKEY
-    }`
+    `https://www.googleapis.com/drive/v2/files/${req.idLink}?key=${req.apiKey}`
   )
-    .then(myRes => {
-      // console.log(myRes.data);
+    .then((myRes) => {
       req.dataReady = {
         g_id: myRes.data.id,
         g_down: myRes.data.downloadUrl,
@@ -20,45 +17,38 @@ const googleLinkCheck = (req, res, next) => {
       };
       next();
     })
-    .catch(e => {
-      console.log("CheckError", e.message);
-      res.json(e);
+    .catch((e) => {
+      e.code === 404 ? res.status(404).send(e.message) : res.sendStatus(400);
     });
 };
 
 const databaseCheck = (req, res, next) => {
   models
     .find({ g_id: req.idLink })
-    .then(result => {
-      console.log("databaseChecked", result[0].g_id, req.idLink);
+    .then((result) => {
       if (result[0].g_id !== req.idLink) {
-        console.log("databaseChecked", result[0].g_id, req.idLink);
         next();
       } else {
-        console.log("databaseCheckedFailed");
         res.status(409).send(result[0]._id);
       }
     })
-    .catch(e => console.log("database", e));
+    .catch((e) => console.log("database", e));
 };
 
 const googleLinkVerification = (req, res, next) => {
-  console.log(req.body.link, req.body.apiKey);
   let link = req.body.link;
   req.apiKey = req.body.apiKey;
   const regexMatchOne = /https:\/\/drive\.google.com\/file\/d\/(.+?)\/(.+?)/g;
   const regexMatchTwo = /https:\/\/drive\.google\.com\/open\?id\/=(.+?)/g;
 
   if (link.match(regexMatchOne)) {
-    // console.log("Matched");
     req.idLink = link.split("/")[5];
     next();
   } else if (link.match(regexMatchTwo)) {
-    // console.log("Matched");
     req.idLink = link.split("=")[2];
     next();
   } else {
-    res.sendStatus(406);
+    res.status(406).send("it is incorrect google drive link");
   }
 };
 

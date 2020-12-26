@@ -30,6 +30,6 @@ connect()
       console.log(`Example app listening on port ${process.env.PORT}!`)
     )
   )
-  .catch(error => {
-    console.log(`Error is found ${error}`);
+  .catch((error) => {
+    console.log(`Error is found: MongoDB`);
   });

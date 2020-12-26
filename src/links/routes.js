@@ -6,7 +6,6 @@ import * as middleware from "./middleware";
 const router = express.Router({ mergeParams: true });
 
 // Routes
-// router.get("/", controller.get_link);
 router.get("/:id", controller.get_link_with_id);
 router.post(
   "/",
