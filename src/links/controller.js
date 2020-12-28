@@ -8,19 +8,29 @@ const get_link = async (req, res) => {
 const get_link_with_id = async (req, res) => {
   try {
     const result = await models.findById(req.params.id);
-    (await result) ? res.send(result) : res.sendStatus(404, "Item Not Found");
+    (await result)
+      ? res.send(result)
+      : res.sendStatus(404, { code: 404, message: "Item Not Found" });
   } catch (err) {
-    res.status(500).send("Error", err.message);
+    console.log(err.message);
+    res.status(500).send({ code: 500, message: "Error: " + err.message });
   }
 };
 
 const post_link_with_id = (req, res) => {
-  models
-    .create(req.dataReady)
-    .then((result) => res.json(result))
-    .catch((err) => {
-      res.status(409).send(`Duplicate ${err.message}`);
-    });
+  try {
+    models
+      .create(req.dataReady)
+      .then((result) => res.json(result))
+      .catch((err) => {
+        console.log(err.message);
+        res
+          .status(409)
+          .send({ code: 409, message: `Duplicate ${err.message}` });
+      });
+  } catch {
+    res.status(500).send({ code: 500, message: "post link failed " });
+  }
 };
 
 module.exports = {
