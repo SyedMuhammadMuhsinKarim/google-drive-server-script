@@ -10,9 +10,9 @@ const mySchema = new Schema({
   g_down: { type: String, required: true },
   title: { type: String, required: true },
   size: { type: String, required: true },
-  quality: { type: String },
-  format: { type: String },
-  duration: { type: String }
+  quality: { type: String, default: null },
+  format: { type: String, default: null },
+  duration: { type: String, default: null }
 });
 
 export default Model("Link", mySchema);
